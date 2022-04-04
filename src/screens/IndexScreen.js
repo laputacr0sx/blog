@@ -20,7 +20,7 @@ const IndexScreen = () => {
 					return blogPost.title;
 				}}
 				renderItem={({ item }) => {
-					return <Text>{item.title}</Text>;
+					return <Text style={styles.textStyle}>{item.title}</Text>;
 				}}
 			/>
 		</View>
@@ -29,4 +29,9 @@ const IndexScreen = () => {
 
 export default IndexScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	textStyle: {
+		fontWeight: '300',
+		fontSize: 18,
+	},
+});
