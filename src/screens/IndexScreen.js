@@ -12,7 +12,7 @@ import { Feather } from '@expo/vector-icons';
 import { Context, Provider } from '../context/BlogContext';
 
 const IndexScreen = () => {
-	const { state, addBlogPost } = useContext(Context);
+	const { state, addBlogPost, deleteBlogPost } = useContext(Context);
 
 	return (
 		<View style={{ flex: 1 }}>
@@ -35,7 +35,7 @@ const IndexScreen = () => {
 							</Text>
 							<TouchableOpacity
 								onPress={() => {
-									console.log(item.id);
+									deleteBlogPost(item.id);
 								}}>
 								<Feather name='trash-2' style={styles.icon} />
 							</TouchableOpacity>
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		paddingVertical: 18,
 		paddingHorizontal: 10,
-		borderTopWidth: 1,
+		borderBottomWidth: 1,
 		borderColor: 'gray',
 	},
 	title: {
