@@ -3,16 +3,27 @@ import {
 	Text,
 	View,
 	FlatList,
-	Button,
 	TouchableOpacity,
 } from 'react-native';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
 
 import { Context, Provider } from '../context/BlogContext';
 
 const IndexScreen = ({ navigation }) => {
-	const { state, deleteBlogPost } = useContext(Context);
+	const { state, deleteBlogPost, getBlogPost } = useContext(Context);
+
+	useEffect(() => {
+		getBlogPost();
+
+		const listener = navigation.addListener('didFocus', () => {
+			getBlogPost();
+		});
+
+		return () => {
+			listener.remove();
+		};
+	}, []);
 
 	return (
 		<View style={{ flex: 1 }}>
