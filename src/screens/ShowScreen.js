@@ -1,5 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React, { useContext } from 'react';
+
+import { Feather } from '@expo/vector-icons';
 
 import { Context } from '../context/BlogContext';
 
@@ -16,6 +18,19 @@ const ShowScreen = ({ navigation }) => {
 			<Text style={styles.contentStyle}>{blogPost.content}</Text>
 		</View>
 	);
+};
+
+ShowScreen.navigationOptions = ({ navigation }) => {
+	return {
+		headerRight: () => (
+			<TouchableOpacity
+				onPress={() => {
+					navigation.navigate('Edit', { id: navigation.getParam('id') });
+				}}>
+				<Feather name='edit' size={24} color='black' />
+			</TouchableOpacity>
+		),
+	};
 };
 
 export default ShowScreen;
